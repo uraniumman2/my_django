@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 {% block head_title %}
-BBB
+    BBB
 {% endblock %}
 
 {% block content %}
-<p>This is about us</p>
+    <p>This is about us</p>
+    {% if user.is_authenticated %}
+        <h1>Good game</h1>
+        <ol>
+            {% for a in list_t %}
+                <li>{{ a }}</li>
+            {% endfor %}
+        </ol>
+    {% endif %}
 {% endblock %}
