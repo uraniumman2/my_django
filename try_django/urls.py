@@ -19,7 +19,8 @@ from free.views import (
     home_page,
     about_page,
     contact_page,
-    example_page
+    example_page,
+    blog_post_detail_page,
 )
 
 urlpatterns = [
@@ -28,4 +29,5 @@ urlpatterns = [
     path('contact', contact_page),
     path('example/', example_page),
     path('admin/', admin.site.urls),
+    path('blog/<int:idx>', blog_post_detail_page),
 ]
