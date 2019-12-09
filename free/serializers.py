@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
-from free.models import BlogPost
+from free.models import Task
 
 
-class BlogPostSerializer(serializers.ModelSerializer):
+class TaskSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BlogPost
-        fields = ('title', 'slug', 'content')
+        model = Task
+        fields = ('id', 'title', 'description', 'completed')
