@@ -1,7 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.template.loader import get_template
-from django.http import Http404
 
 from .models import BlogPost
 
@@ -9,13 +8,8 @@ def home_page(request):
     return render(request, "hello_world.html", {"title": "gg", "list_t":[1,34,5,2,3,45]})
 
 
-def blog_post_detail_page(request, idx):
-    try:
-        obj = BlogPost.objects.get(id = idx)
-    except BlogPost.DoesNotExist:
-        raise Http404
-    except ValueError:
-        raise Http404
+def blog_post_detail_page(request, slug):
+    obj = get_object_or_404(BlogPost, slug = slug)
     return render(request,"blog_post_detail.html", {"object":obj})
 
 def about_page(request):

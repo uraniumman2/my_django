@@ -29,5 +29,5 @@ urlpatterns = [
     path('contact', contact_page),
     path('example/', example_page),
     path('admin/', admin.site.urls),
-    path('blog/<int:idx>', blog_post_detail_page),
+    path('blog/<str:slug>', blog_post_detail_page),
 ]
