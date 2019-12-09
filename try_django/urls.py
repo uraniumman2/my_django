@@ -21,13 +21,17 @@ from free.views import (
     contact_page,
     example_page,
     blog_post_detail_page,
+    blog_post_api,
+    blog_post_detail_api
 )
 
 urlpatterns = [
     path('', home_page),
     path('about/', about_page),
-    path('contact', contact_page),
+    path('contact/', contact_page),
     path('example/', example_page),
     path('admin/', admin.site.urls),
     path('blog/<str:slug>', blog_post_detail_page),
+    path('api/v1/blog/', blog_post_api),
+    path('api/v1/blog/<str:slug>', blog_post_detail_api),
 ]
