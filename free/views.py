@@ -15,7 +15,7 @@ def home_page(request):
     return render(request, "hello_world.html", {"title": "gg", "list_t": [1, 34, 5, 2, 3, 45]})
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['GET', 'PUT', 'DELETE', 'PATCH'])
 def blog_post_detail_api(request, pk):
     """
     Get, update or delete specific blog post
@@ -38,6 +38,11 @@ def blog_post_detail_api(request, pk):
             return Response(serializer.data)
         else:
             Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PATCH':
+        serializer = TaskSerializer(task, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
     elif request.method == 'DELETE':
         task.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
